@@ -18,6 +18,11 @@ public class EnemyHumanPush : MonoBehaviour
     Animator Anim;
     float Timer;
 
+    // ヒット時イベント
+    // <！> :このイベントが無いとエラー発生
+    public void Hit()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
