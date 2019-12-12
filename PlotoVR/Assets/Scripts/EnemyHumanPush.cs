@@ -66,8 +66,8 @@ public class EnemyHumanPush : MonoBehaviour
     {
         Anim.SetBool("IsRun", true);
 
-        Rigid.AddForce(transform.up * JumpPower);
-        Rigid.AddForce(transform.forward * PushPower);
+        //Rigid.AddForce(transform.up * JumpPower);
+        //Rigid.AddForce(transform.forward * PushPower);
 
         if (Timer > PushToBackTime) ActionChange(Back);
 
@@ -76,7 +76,7 @@ public class EnemyHumanPush : MonoBehaviour
     {
         Anim.SetBool("IsRun", false);
 
-        Rigid.AddForce(-transform.forward * BackPower);
+        //Rigid.AddForce(-transform.forward * BackPower);
 
         if (Timer > BackToWaitTime) ActionChange(Wait);
     }
