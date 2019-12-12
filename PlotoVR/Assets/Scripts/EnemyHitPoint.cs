@@ -8,7 +8,7 @@ public class EnemyHitPoint : MonoBehaviour
     public float DamageBackPower = 10.0f;
     public GameObject HitParticle;
 
-    float timer = 0.0f;
+    float Timer = 0.0f;
     bool IsHit = false;
 
     Rigidbody Rigid;
@@ -20,9 +20,9 @@ public class EnemyHitPoint : MonoBehaviour
 
     void Update()
     {
-        if(IsHit) timer += Time.deltaTime;
+        if(IsHit) Timer += Time.deltaTime;
 
-        if (timer > 0.1f) IsHit = false;
+        if (Timer > 0.1f) IsHit = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,9 +31,7 @@ public class EnemyHitPoint : MonoBehaviour
         if (HitParticle && IsHitController && !IsHit)
         {
             IsHit = true;
-            timer = 0.0f;
-
-            Debug.Log("Hit" + other.gameObject.tag);
+            Timer = 0.0f;
 
             HP--;
 
