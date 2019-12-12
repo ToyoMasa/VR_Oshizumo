@@ -7,16 +7,23 @@ using UnityEngine.SceneManagement;
 public class SceneReset : MonoBehaviour
 {
     [SerializeField]
-    private SteamVR_Input_Sources hand_type_;
+    private SteamVR_Input_Sources RHandType;
 
     [SerializeField]
-    private SteamVR_Action_Boolean hand_action_;
+    private SteamVR_Action_Boolean RHandAction;
+
+    [SerializeField]
+    private SteamVR_Input_Sources LHandType;
+
+    [SerializeField]
+    private SteamVR_Action_Boolean LHandAction;
+
 
     int count = 0;
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) || hand_action_.GetState(hand_type_))
+        if (Input.GetKey(KeyCode.Space) || RHandAction.GetState(RHandType) || LHandAction.GetState(LHandType))
         {
             count++;
         }
