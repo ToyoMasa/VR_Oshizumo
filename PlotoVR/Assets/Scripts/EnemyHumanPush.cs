@@ -47,8 +47,6 @@ public class EnemyHumanPush : MonoBehaviour
 
     void Wait()
     {
-        Anim.SetBool("IsRun", false);
-
         if (Target.position.y <= 0) return;
 
         Vector3 front = Target.position - transform.position;
@@ -59,22 +57,43 @@ public class EnemyHumanPush : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(front);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
 
-        if (Timer > WaitToPushTime) ActionChange(Push);
+        // 一定時間になったらランダムに攻撃
+        if (Timer > WaitToPushTime)
+        {
+            int AnimTarget = Random.Range(0, 3);
+
+            if(AnimTarget == 0) ActionChange(Push);
+            if(AnimTarget == 1) ActionChange(RowlingKick);
+            if(AnimTarget == 2) ActionChange(Head);
+        }
     }
 
     void Push()
     {
-        Anim.SetBool("IsRun", true);
-
-        //Rigid.AddForce(transform.up * JumpPower);
-        //Rigid.AddForce(transform.forward * PushPower);
+        Anim.SetBool("IsPush", true);
 
         if (Timer > PushToBackTime) ActionChange(Back);
-
     }
+
+    void RowlingKick()
+    {
+        Anim.SetBool("IsRowlingKick", true);
+
+        if (Timer > PushToBackTime) ActionChange(Back);
+    }
+
+    void Head()
+    {
+        Anim.SetBool("IsHead", true);
+
+        if (Timer > PushToBackTime) ActionChange(Back);
+    }
+
     void Back()
     {
-        Anim.SetBool("IsRun", false);
+        Anim.SetBool("IsPush", false);
+        Anim.SetBool("IsRowlingKick", false);
+        Anim.SetBool("IsHead", false);
 
         //Rigid.AddForce(-transform.forward * BackPower);
 
